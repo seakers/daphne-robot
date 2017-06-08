@@ -79,6 +79,8 @@ translate([0,35,0])
 // Bottom base
 color([1,0,0])
     base(0,-120,0);
+    
+groove();
 
 // --- Draw modules
 
@@ -236,6 +238,8 @@ module leg(x,y,z) {
                 cylinder(d=62,h=7,$fn=resolution,center=true);
             translate([0,-50,0])
                 cube([32,100.5,7],center=true);
+            translate([0,-92,0])
+                cylinder(d=2,h=100,$fn=40);
             }
 }
 
@@ -244,6 +248,22 @@ module base(x,y,z) {
     translate([x,y,z])
         rotate([90,0,0])
             cylinder(r=100,h=20,$fn=resolution,center=true);
+}
+
+module groove() {
+    translate([x,y,z])
+    rotate([90,0,0])
+    union() {
+        difference() {
+            cylinder(h=16,r=8,$fn=resolution);
+            translate([-1.5,-2.5,0])
+                cube([3,5,16+0.1],1);
+            translate([0,0,9+(7/2)]) 
+            rotate([0,90,0])  
+                cylinder(h=30,r=2,$fn=resolution);
+        }
+        cylinder(h=9,r=20,$fn=resolution);
+    }
 }
 
 // --- Module functions
