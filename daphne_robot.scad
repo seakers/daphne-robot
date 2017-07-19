@@ -68,7 +68,7 @@ groove(40,-180,0);
 // Draw head module
 module head() {  
     difference() {
-        scale([1.2,1]) {
+        scale([1.2,1])
         union() {
             difference(){
                 cylinder(r=72,h=140,$fn=resolution,center=true);   
@@ -82,7 +82,6 @@ module head() {
                 top_round(65,7,$fn=resolution);
             translate([0,0,-70])
                 bottom_round(55,17,$fn=resolution);
-        }
         }
         translate([-60,-80,0])
             cube([25,100,80],center=true);
@@ -154,7 +153,7 @@ module head() {
 module head_top_shelf(x,y,z) {
     translate([x,y,z])
     difference() {
-        cube([155,2,120],center=true); 
+        cube([155,2,120],center=true);
         translate([22,11,10])
             rotate([90,90,0])
             hull() {
@@ -173,17 +172,59 @@ module head_top_shelf(x,y,z) {
         translate([-74.5,0,0])
             rotate([90,0,0])
             cylinder(r=1.375,h=10,center=true);
-        translate([22,0,10])
+        translate([-55,0,25])
+            cube([20,10,50],center=true);
+        // Raspberry
+        translate([25,0,24.5])
+            rotate([90,180,0])
+            union() {
+                translate([0,0,-11])
+                    hull() {
+                        translate([-(85-6)/2,-(56-6)/2,0]) 
+                            cylinder(r=3,h=10.4);
+                        translate([-(85-6)/2, (56-6)/2,0]) 
+                            cylinder(r=3,h=10.4);
+                        translate([ (85-6)/2,-(56-6)/2,0]) 
+                            cylinder(r=3,h=10.4);
+                        translate([ (85-6)/2,(56-6)/2,0]) 
+                            cylinder(r=3,h=10.4);
+                    }
+                translate([-85/2+3.5,-49/2,-1]) 
+                    cylinder(d=2.75,h=3, $fn=25);
+                translate([-85/2+3.5,49/2,-1]) 
+                    cylinder(d=2.75, h=3, $fn=25);
+                translate([58-85/2+3.5,-49/2,-1])
+                    cylinder(d=2.75,h=3, $fn=25);
+                translate([58-85/2+3.5, 49/2,-1])
+                    cylinder(d=2.75,h=3, $fn=25); 
+            }  
+        // Arduino
+        translate([26,0,0])  
             rotate([90,90,0])
             union() {
-                translate([-85/2+3.5,-49/2,-1]) 
-                    cylinder(d=2.75,h=3);
-                translate([-85/2+3.5,49/2,-1]) 
-                    cylinder(d=2.75, h=3);
-                translate([58-85/2+3.5,-49/2,-1])
-                    cylinder(d=2.75,h=3);
-                translate([58-85/2+3.5, 49/2,-1])
-                    cylinder(d=2.75,h=3); 
+                linear_extrude(height = 1.8) {
+                    polygon(points = [ 
+                        [-15.115, 2.545],
+                        [49.4, 2.545],
+                        [50.925, 1.021],
+                        [50.925, -10.409],
+                        [53.465, -12.949],
+                        [53.465, -45.715],
+                        [50.925, -48.255],
+                        [50.925, -50.795],
+                        [-15.115, -50.795] ],
+                        paths = [[0, 1, 2, 3, 4, 5, 6, 7, 8]],
+                        convexity = 10);
+                }
+                translate([0, 0, -10]) {
+                    cylinder(d=2.75, h=100, $fn=25);
+                    translate([-1.0929112, -48.4026972, 0]) 
+                        cylinder(d=2.75, h=100, $fn=25);
+                    translate([51, -15.25, 0]) 
+                        cylinder(d=2.75, h=100, $fn=25);
+                    translate([51, -43.25, 0]) 
+                        cylinder(d=2.75, h=100, $fn=25);
+                }
             }
     }  
 }
@@ -264,9 +305,10 @@ module leg(x,y,z) {
                 cylinder(d=10,h=200,$fn=40);
             translate([0,0,0])
                 cylinder(d=62,h=7,$fn=resolution,center=true);
+            // Take into account tolerances !!!
             translate([0,-50,0])
-                cube([32,100.5,7],center=true);
-            translate([0,-92,0])
+                cube([32+0.5,100.5,7+0.5],center=true);
+            translate([0,-90,0])
                 cylinder(d=2,h=100,$fn=40);
             }
 }
@@ -281,21 +323,23 @@ module top_base(x,y,z) {
         translate([60,0,-15])
         rotate([90,0,90])
         difference() {
+            // Take into account tolerances !!!
             translate([0,5,0])
-                cube([32-0.5,20,7-0.5],center=true);
-            translate([0,2,-40])
+                cube([32-0.5,24,7-0.5],center=true);
+            translate([0,0,-40])
                 cylinder(d=2,h=100,$fn=40);
         }     
         translate([-60,0,-15])
         rotate([90,0,90])
         difference() {
+            // Take into account tolerances !!!
             translate([0,5,0])
-                cube([32-0.5,20,7-0.5],center=true);
-            translate([0,2,-40])
+                cube([32-0.5,24,7-0.5],center=true);
+            translate([0,0,-40])
                 cylinder(d=2,h=100,$fn=40);
         }
     }
-    //cylinder(r=70,h=9,$fn=resolution);
+//    cylinder(r=70,h=9,$fn=resolution);
     translate([0,0,-4])
     gear(number_of_teeth=80,
         circular_pitch=318,
@@ -320,23 +364,62 @@ module top_base(x,y,z) {
     }
 }
 
+// Draw top base module simple
+module top_base_simple(x,y,z) { 
+    translate([x,y,z])
+    rotate([90,0,0])
+    difference() {
+        union() {       
+            cylinder(r=100,h=15,$fn=resolution,center=true);
+            translate([60,0,-15])
+            rotate([90,0,90])
+            difference() {
+                // Take into account tolerances !!!
+                translate([0,5,0])
+                    cube([32-0.6,24,7-0.6],center=true);
+                translate([0,0,-40])
+                    cylinder(d=2,h=100,$fn=40);
+            }     
+            translate([-60,0,-15])
+            rotate([90,0,90])
+            difference() {
+                // Take into account tolerances !!!
+                translate([0,5,0])
+                    cube([32-0.65,24,7-0.65],center=true);
+                translate([0,0,-40])
+                    cylinder(d=2,h=100,$fn=40);
+            }
+        }
+        translate([0,0,8])
+            cylinder(r=90,h=20,$fn=resolution,center=true);
+    }
+}
+
 // Draw bottom base module
 module bottom_base(x,y,z) {
     translate([x,y,z])
         rotate([90,0,0])
-        difference() {
-            cylinder(r=100,h=20,$fn=resolution,center=true);
-            translate([0,0,-15])
-                cylinder(r=70,h=40,$fn=resolution,center=true);   
-            translate([85,0,-10])
-                sphere(r=7.5, resolution=20, center=true);
-            translate([-85,0,-10])
-                sphere(r=7.5, resolution=20, center=true);
-            translate([0,85,-10])
-                sphere(r=7.5, resolution=20, center=true);
-            translate([0,-85,-10])
-                sphere(r=7.5, resolution=20, center=true);
-        }       
+        union() {   
+            cylinder(r=14, h=19, $fn=50);
+            difference() {
+                translate([-14.6/2,-17,1.9]) 
+                    cube([14.6,17,17]);
+                cylinder(r=27/2, h=29, $fn=50);
+            }        
+            difference() {
+                cylinder(r=100,h=20,$fn=resolution,center=true);
+                translate([0,0,-15])
+                    cylinder(r=70,h=40,$fn=resolution,center=true);   
+                translate([85,0,-10])
+                    sphere(r=7.5, resolution=20, center=true);
+                translate([-85,0,-10])
+                    sphere(r=7.5, resolution=20, center=true);
+                translate([0,85,-10])
+                    sphere(r=7.5, resolution=20, center=true);
+                translate([0,-85,-10])
+                    sphere(r=7.5, resolution=20, center=true);
+            } 
+        }
 }
 
 module groove(x,y,z) {
@@ -351,8 +434,8 @@ module groove(x,y,z) {
             rotate([0,90,0])  
                 cylinder(h=30,r=1.3,$fn=resolution);
         }
-        //cylinder(r=20,h=9,$fn=resolution);
-            gear(number_of_teeth=20,
+        cylinder(r=20,h=9,$fn=resolution);
+        gear(number_of_teeth=20,
             circular_pitch=318,
             clearance = 0.2,
             gear_thickness = 8,
