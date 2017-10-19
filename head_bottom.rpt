@@ -1,0 +1,77 @@
+*****************************************************************
+      SolidWorks Corporation - IGES Processor Status Report
+*****************************************************************
+=================================================================
+General Information
+=================================================================
+Sending System Product I.D.  : head_bottom
+Receiving System Product I.D.: head_bottom
+File Name                    : C:\Users\cit-labs\Desktop\daphne-robot-master\STLs\head_bottom.IGS
+Sending System               : SolidWorks 2017
+Preprocessor Version         : SolidWorks 2017
+File Creation Date           : 171019.001854
+Model Creation Date          : 171019.001854
+Units                        : M
+Model Space Scale            : 1
+Author                       : ak2244
+Organization                 : 
+
+
+=================================================================
+Entity Processing Information
+=================================================================
+ERROR:   DE#137437, TYPE   128: Unable to create a bspline surface.
+ERROR:   DE#137437, TYPE   128: Unable to create a bspline surface.
+ERROR:   DE#187201, TYPE   128: Unable to create a bspline surface.
+ERROR:   DE#187201, TYPE   128: Unable to create a bspline surface.
+ERROR:   DE#225217, TYPE   128: Unable to create a bspline surface.
+ERROR:   DE#225217, TYPE   128: Unable to create a bspline surface.
+ERROR:   DE#236085, TYPE   128: Unable to create a bspline surface.
+ERROR:   DE#236085, TYPE   128: Unable to create a bspline surface.
+ERROR:   DE#318453, TYPE   128: Unable to create a bspline surface.
+ERROR:   DE#318453, TYPE   128: Unable to create a bspline surface.
+ERROR:   DE#360869, TYPE   128: Unable to create a bspline surface.
+ERROR:   DE#360869, TYPE   128: Unable to create a bspline surface.
+ERROR:   DE#361045, TYPE   128: Unable to create a bspline surface.
+ERROR:   DE#361045, TYPE   128: Unable to create a bspline surface.
+
+
+=================================================================
+Precision analysis of IGES file:
+=================================================================
+  Most prevalent number of significant digits:              10
+  Highest number of significant digits:                     11
+  Average number of significant digits:                10.4053
+  Maximum distance to origin:                           18.544
+  Minimum distance to origin:                          18.3756
+  Effective number of significant digits:               8.6592
+
+
+=================================================================
+Entity Summary
+=================================================================
+-----------------------------------------------------------------
+Type Name                                         Count Converted
+---- ----                                         ----- ---------
+102  Composite curve                              33814     33814
+110  Line                                         50721     50721
+126  Rational B-spline curve                      50721     50721
+128  Rational B-spline surface                    16907     16893
+142  Curve on a parametric surface                16907     16907
+144  Trimmed parametric surface                   16907     16900
+314  Color definition                                 1         1
+_________________________________________________________________
+
+
+=================================================================
+Result Summary
+=================================================================
+SolidWorks Feature Type                Count
+-----------------------                -----
+Solid feature(s)                       1
+Surface feature(s)                     0
+Curve/Sketch feature(s)                0
+--------------------------------------------
+Start time: Thursday, October 19, 2017 00:19:44
+Finish time: Thursday, October 19, 2017 00:20:45
+Processing time: 0 days, 00 hours, 01 mins, 01 secs
